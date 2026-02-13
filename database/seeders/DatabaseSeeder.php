@@ -14,10 +14,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Use create() instead of factory() to avoid the "fake()" function error
-        User::create([
-            'name' => 'Aldmic User',
-            'email' => 'aldmic',
-            'password' => Hash::make('123abc123'), // Fixed password to match requirements
-        ]);
+        User::firstOrCreate(
+            ['email' => 'aldmic'], // Search condition
+            [
+                'name' => 'Aldmic User',
+                'password' => Hash::make('123abc123'),
+            ]
+        );
     }
 }
